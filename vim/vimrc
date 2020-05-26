@@ -1,0 +1,56 @@
+
+call plug#begin('~/.vim/bundle')
+Plug 'junegunn/vim-easy-align'
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
+Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'airblade/vim-gitgutter'
+Plug 'Shougo/denite.nvim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+Plug 'sebdah/vim-delve'
+call plug#end()
+
+if has('nvim')
+    " Enable deoplete on startup
+    let g:deoplete#enable_at_startup = 1
+endif
+
+" golang settings
+au FileType go set noexpandtab
+au FileType go set shiftwidth=4
+au FileType go set softtabstop=4
+au FileType go set tabstop=4
+au FileType go nmap <leader>gt :GoDeclsDir<cr>
+au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
+au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
+au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
+
+" hotkeys
+au FileType go nmap <F10> :GoTest -short<cr>
+au FileType go nmap <F9> :GoCoverageToggle -short<cr>
+au FileType go nmap <F12> <Plug>(go-def)
+
+let g:deoplete#sources#go#fallback_to_source = 1
+let g:deoplete#sources#go#unimported_packages = 1
+let g:deoplete#sources#go#builtin_objects = 1
+let g:deoplete#sources#go#source_importer = 1
+let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#gocode_binary = '/usr/local/go/bin/gocode'
+let g:deoplete#sources#go#package_dot = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 1
+let g:go_fmt_command = "goimports"
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+let g:airline#extensions#ale#enabled = 1
+let g:go_auto_type_info = 1
