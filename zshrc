@@ -6,13 +6,15 @@ export GOPATH=/home/alexandr/go
 export PATH=$PATH:$GOPATH/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$PATH:$GOPATH/bin/gocode
-
+export PATH=$PATH:/usr/bin/llvm-config
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# aliases
 alias vi="nvim"
 alias vim="nvim"
+alias workdir="cd ~/go/src/github.com"
 
 setopt AUTO_CD
 ENABLE_CORRECTION="true"
